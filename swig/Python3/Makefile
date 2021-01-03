@@ -49,6 +49,9 @@ else
     LDLIBS := -lm -ldl -lf77blas -lcblas -llapack -latlas
   endif
   SNOWBOYDETECTLIBFILE = $(TOPDIR)/lib/ubuntu64/libsnowboy-detect.a
+  ifneq (,$(findstring aarch64,$(shell uname -m)))
+    SNOWBOYDETECTLIBFILE = $(TOPDIR)/lib/aarch64-ubuntu1604/libsnowboy-detect.a
+  endif
   ifneq (,$(findstring arm,$(shell uname -m)))
     SNOWBOYDETECTLIBFILE = $(TOPDIR)/lib/rpi/libsnowboy-detect.a
     ifeq ($(findstring fc,$(shell uname -r)), fc)
